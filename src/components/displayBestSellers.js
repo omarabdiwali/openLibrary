@@ -9,7 +9,6 @@ export default class BestSellers extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(process.env.REACT_APP_NYT_API_KEY);
     const url = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${this.state.apiKey}`;
     const response = await fetch(url);
     let data = await response.json();
