@@ -121,6 +121,7 @@ class Details extends React.Component {
                     <img
                     className="rounded-lg"
                     src={this.state.book.imageLinks ? this.state.book.imageLinks.thumbnail : 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
+                    alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'
                   ></img>
                 </div>
                 <div className="m-10">
