@@ -5,10 +5,11 @@ import Books from './displayBooks';
 export default class BestSellers extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { apiKey: 'KekOAriOkJq9jGKvakAHuAjH1V22z1Ba', books: '' };
+    this.state = { apiKey: process.env.REACT_APP_NYT_API_KEY, books: '' };
   }
 
   async componentDidMount() {
+    console.log(process.env.REACT_APP_NYT_API_KEY);
     const url = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${this.state.apiKey}`;
     const response = await fetch(url);
     let data = await response.json();

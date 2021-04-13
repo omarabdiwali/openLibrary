@@ -5,6 +5,8 @@ import Details from './components/showDetails';
 import SearchPage from './components/searchPage';
 import HomePage from './components/homePage';
 
+require('dotenv').config();
+
 function App() {
   return (
     <HashRouter>

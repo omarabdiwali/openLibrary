@@ -10,7 +10,7 @@ export default function SearchPage(props) {
   const title = book.replace(/\+/g, ' ');
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState('');
-  const apiKey = 'AIzaSyADRfQjG7z55-JtGAq-o72lCOR43LGuRa4';
+  const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
   const history = useHistory();
 
   function onClick(e) {
