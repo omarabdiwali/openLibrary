@@ -24,7 +24,7 @@ class Details extends React.Component {
 
   async componentDidMount() {
     if (this.isIsbn(this.state.isbn)) {
-      const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${this.state.isbn}`;
+      const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${this.state.isbn}&key=${this.state.apiKey}`;
       const response = await fetch(url);
       const data = await response.json();
       this.setState({
@@ -120,8 +120,13 @@ class Details extends React.Component {
                 <div className="mx-10 my-10">
                     <img
                     className="rounded-lg"
+<<<<<<< Updated upstream
                     src={this.state.book.imageLinks ? this.state.book.imageLinks.thumbnail : 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
                     alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'
+=======
+                    src={this.state.book.imageLinks.thumbnail ? this.state.book.imageLinks.thumbnail : 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
+                    alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'  
+>>>>>>> Stashed changes
                   ></img>
                 </div>
                 <div className="m-10">
