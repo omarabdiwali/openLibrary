@@ -122,10 +122,7 @@ class Details extends React.Component {
                 <div className="mx-10 my-10">
                     <img
                     className="rounded-lg"
-                    src={this.state.book.imageLinks.thumbnail}
-                    alt={
-                      'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'
-                    }
+                    src={this.state.book.imageLinks ? this.state.book.imageLinks.thumbnail : 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
                   ></img>
                 </div>
                 <div className="m-10">
