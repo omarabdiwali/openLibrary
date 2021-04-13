@@ -9,7 +9,7 @@ class Details extends React.Component {
     super(props);
     const { isbn } = props.match.params;
     this.state = {
-      apiKey: process.env.REACT_APP_GOOGLE_BOOKS_API,
+      apiKey: process.env.REACT_APP_GOOGLE_BOOKS_API_KEY,
       book: '',
       loading: true,
       isbn: isbn,
