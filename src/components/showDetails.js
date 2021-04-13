@@ -27,7 +27,6 @@ class Details extends React.Component {
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${this.state.isbn}`;
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       this.setState({
         book: data.items ? data.items[0].volumeInfo : 'N/A',
         loading: false,
@@ -39,7 +38,6 @@ class Details extends React.Component {
       const url = `https://www.googleapis.com/books/v1/volumes/${this.state.isbn}?key=${this.state.apiKey}`;
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
       this.setState({
         book: data.volumeInfo ? data.volumeInfo : 'N/A',
         loading: false,
