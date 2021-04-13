@@ -120,13 +120,8 @@ class Details extends React.Component {
                 <div className="mx-10 my-10">
                     <img
                     className="rounded-lg"
-<<<<<<< Updated upstream
                     src={this.state.book.imageLinks ? this.state.book.imageLinks.thumbnail : 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
                     alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'
-=======
-                    src={this.state.book.imageLinks.thumbnail ? this.state.book.imageLinks.thumbnail : 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
-                    alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'  
->>>>>>> Stashed changes
                   ></img>
                 </div>
                 <div className="m-10">
