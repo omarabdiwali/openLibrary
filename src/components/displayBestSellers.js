@@ -5,6 +5,11 @@ import Books from './displayBooks';
 export default function BestSellers() {
   const apiKey = process.env.REACT_APP_NYT_API_KEY;
   const [books, setBooks] = React.useState('');
+  const [size, setSize] = React.useState(window.innerWidth > 800 ? 4 : window.innerWidth > 500 ? 2 : 1);
+
+  window.addEventListener('resize', () => {
+    window.innerWidth > 800 ? setSize(4) : window.innerWidth > 500 ? setSize(2) : setSize(1);
+  })
 
   React.useEffect(() => {
     const url = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${apiKey}`;
@@ -18,7 +23,7 @@ export default function BestSellers() {
           <Spinner />
         </center>
       ) : (
-        <SimpleGrid columns={window.innerWidth > 800 ? 4 : window.innerWidth > 500 ? 2 : 1}>
+        <SimpleGrid columns={size}>
           {books.map((book, i) => {
             return <Books book={book} type={'nyt'} key={i} />;
           })}
