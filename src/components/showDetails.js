@@ -26,7 +26,7 @@ export default function Details(props) {
     else {
       const url = `https://www.googleapis.com/books/v1/volumes/${isbn}?key=${apiKey}`;
       fetch(url).then(resp => resp.json()).then(data => {
-        setBook( data.volumeInfo ?? "N/A");
+        setBook(data.volumeInfo ?? "N/A");
         setLoading(false);
         setDescription(removeHTML(data.volumeInfo.description));
         setAuthors(authorsFunc(data.volumeInfo.authors));
@@ -96,7 +96,8 @@ export default function Details(props) {
               <div className="mx-10 my-10">
                   <img
                   className="rounded-lg"
-                  src={book.imageLinks.thumbnail ?? 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
+                  style={{ minHeight: "180px", minWidth: "110px", aspectRatio: "auto 110 / 180" }}    
+                  src={book.imageLinks?.thumbnail ?? 'https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'}
                   alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'
                 ></img>
               </div>
