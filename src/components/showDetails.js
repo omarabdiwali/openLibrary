@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Spinner, Heading, Text, Input, IconButton } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { useHistory } from 'react-router-dom';
@@ -6,15 +6,15 @@ import { AiOutlineHome } from 'react-icons/ai';
 
 export default function Details(props) {
   const { isbn } = props.match.params;
-  const [book, setBook] = React.useState('');
-  const [loading, setLoading] = React.useState(true);
-  const [authors, setAuthors] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const [search, setSearch] = React.useState('');
+  const [book, setBook] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [authors, setAuthors] = useState('');
+  const [description, setDescription] = useState('');
+  const [search, setSearch] = useState('');
   const apiKey = process.env.REACT_APP_GOOGLE_BOOKS_API_KEY;
   const history = useHistory();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isIsbn(isbn)) {
       const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}&key=${apiKey}`;
       fetch(url).then(resp => resp.json()).then(data => {
