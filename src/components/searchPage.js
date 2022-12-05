@@ -47,7 +47,7 @@ export default function SearchPage(props) {
         onClick={homePage}
         style={{ margin: 17 }}
       />
-      <center style={{ paddingTop: '3%' }}>
+      <center>
         <form onSubmit={onClick}>
           <Input
             placeholder="Search"
@@ -58,7 +58,7 @@ export default function SearchPage(props) {
           <IconButton
             onClick={onClick}
             icon={<SearchIcon />}
-            style={{ marginLeft: '1%', width: '8%' }}
+            style={{ marginLeft: '1.5%', width: '8%', marginTop: "-7px" }}
             isRound={true}
           />
         </form>

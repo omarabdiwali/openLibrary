@@ -6,7 +6,7 @@ import { AiOutlineHome } from 'react-icons/ai';
 
 export default function Details(props) {
   const { isbn } = props.match.params;
-  const [book, setBook] = useState('');
+  const [book, setBook] = useState();
   const [loading, setLoading] = useState(true);
   const [authors, setAuthors] = useState('');
   const [description, setDescription] = useState('');
@@ -28,7 +28,9 @@ export default function Details(props) {
       fetch(url).then(resp => resp.json()).then(data => {
         setBook(data.volumeInfo ?? "N/A");
         setLoading(false);
-        setDescription(removeHTML(data.volumeInfo.description));
+        // setDescription(data.volumeInfo.description);
+        let desc = document.getElementById("desc");
+        desc.innerHTML = data.volumeInfo.description;
         setAuthors(authorsFunc(data.volumeInfo.authors));
       })
     }
@@ -42,7 +44,7 @@ export default function Details(props) {
   }
   function removeHTML(data) {
     let change = data.replace(/(<([^>]+)>)/gi, ' ');
-    change = change.replace("'", '').replace("'", '');
+    // change = change.replace("'", '').replace("'", '');
     return change;
   }
   function onClick(e) {
@@ -91,7 +93,7 @@ export default function Details(props) {
       </center>
       <div>
         {book.title ? (
-          <div className="max-w-5xl mx-auto shadow-2xl rounded-lg px-4 my-10">
+              <div className={window.innerWidth > 500 ? "max-w-5xl mx-auto shadow-2xl rounded-lg px-4 my-10" : "px-4"}>
             <div className="flex flex-row">
               <div className="mx-10 my-10">
                   <img
@@ -101,8 +103,8 @@ export default function Details(props) {
                   alt='https://islandpress.org/sites/default/files/default_book_cover_2015.jpg'
                 ></img>
               </div>
-              <div className="m-10">
-                <Heading style={{ alignItems: 'center' }} size={wordCount(book.title) > 7 ? "lg" : wordCount(book.title) > 5 ? "xl" : "2xl"}>
+              <div className="my-10 mx-5 content-center">
+                <Heading className="px-1" size={wordCount(book.title) > 7 ? "md" : wordCount(book.title) > 5 ? "xl" : "2xl"}>
                   {book.title}
                 </Heading>
                 <Text fontSize="2xl" style={{ paddingTop: '2%' }}>
@@ -110,7 +112,7 @@ export default function Details(props) {
                 </Text>
               </div>  
             </div>
-            <div className="py-10 max-w-3xl mx-auto">
+            <div className="py-10 max-w-3xl mx-auto" id="desc">
               {description.length > 0
                 ? description
                 : book.description}    
