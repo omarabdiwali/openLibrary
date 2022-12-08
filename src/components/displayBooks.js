@@ -5,17 +5,19 @@ import { Link } from 'react-router-dom';
 
 export default function Books({ book, type }) {
 
-  let ratings = type === "nyt" ? "" : book.volumeInfo.averageRating ? book.volumeInfo.averageRating : 0;
-  let reviewers = type === "nyt" ? "" : book.volumeInfo.ratingsCount ? book.volumeInfo.ratingsCount : 0;
-  let title = type === "nyt" ? book.title : book.volumeInfo.title;
-  let image = type === "nyt" ? book.book_image : book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://islandpress.org/sites/default/files/default_book_cover_2015.jpg";
-  let littleData = type === "nyt" ? `#${book.rank}` : book.volumeInfo.printType ? book.volumeInfo.printType : "N/A";
-  let published = type === "nyt" ? "" : book.volumeInfo.publishedDate;
-  let review = type === "nyt" ? "" : `${reviewers} reviewers.`
-  let isbn = type === "nyt" ? book.primary_isbn10 : book.id;
+  let nyt = type === "nyt";
+
+  let ratings = nyt ? "" : book.volumeInfo.averageRating ? book.volumeInfo.averageRating : 0;
+  let reviewers = nyt ? "" : book.volumeInfo.ratingsCount ? book.volumeInfo.ratingsCount : 0;
+  let title = nyt ? book.title : book.volumeInfo.title;
+  let image = nyt ? book.book_image : book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://islandpress.org/sites/default/files/default_book_cover_2015.jpg";
+  let littleData = nyt ? `#${book.rank}` : book.volumeInfo.printType ? book.volumeInfo.printType : "N/A";
+  let published = nyt ? "" : book.volumeInfo.publishedDate;
+  let review = nyt ? "" : `${reviewers} reviewers.`
+  let isbn = nyt ? book.primary_isbn10 : book.id;
 
   function getAuthors() {
-    if (type === "nyt") {
+    if (nyt) {
       return book.author;
     }
     else {
@@ -58,7 +60,7 @@ export default function Books({ book, type }) {
           By: {getAuthors()}
         </Box>
         <Box d="flex" mt="2" alignItems="center">
-          {type === "nyt" ? `Published By: ${book.publisher}` :
+          {nyt ? `Published By: ${book.publisher}` :
             Array(5)
               .fill("")
               .map((_, i) => (
