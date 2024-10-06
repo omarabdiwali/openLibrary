@@ -32,11 +32,20 @@ export default function SearchPage(props) {
     history.push('/');
   }
 
+  const sortOrder = (a, b) => {
+    let aRatings = a.volumeInfo.ratingsCount ? a.volumeInfo.ratingsCount : 0;
+    let bRatings = b.volumeInfo.ratingsCount ? b.volumeInfo.ratingsCount : 0;
+    return Number(bRatings) - Number(aRatings);
+  }
+
   useEffect(() => {
     const url = `https://www.googleapis.com/books/v1/volumes?q=${title}&maxResults=20&orderBy=relevance&key=${apiKey}`;
     fetch(url)
       .then(resp => resp.json())
-      .then(data => setBooks(data.items))
+      .then(data => {
+        let ordered = data.items.sort(sortOrder);
+        setBooks(ordered);
+      })
       .catch(err => console.error(err));
   }, [title, apiKey]);
 
